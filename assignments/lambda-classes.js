@@ -1,3 +1,4 @@
+// Classes
 class Person {
   constructor(information) {
     this.name = information.name;
@@ -49,10 +50,10 @@ class Student extends Person {
 }
 
 class ProjectManagers extends Instructor {
-  constructor(information) {
-    super(information);
-    this.gradClassName = information.gradClassName;
-    this.favInstructor = information.favInstructor;
+  constructor(PMinformation) {
+    super(PMinformation);
+    this.gradClassName = PMinformation.gradClassName;
+    this.favInstructor = PMinformation.favInstructor;
   }
 
   standUp(channel) {
