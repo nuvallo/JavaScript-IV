@@ -1,4 +1,6 @@
-// Classes
+// CLASSES
+
+// Person Class
 class Person {
   constructor(information) {
     this.name = information.name;
@@ -11,6 +13,7 @@ class Person {
   }
 }
 
+// Instructor Class
 class Instructor extends Person {
   constructor(InstInformation) {
     super(InstInformation);
@@ -26,14 +29,28 @@ class Instructor extends Person {
   grade(student, subject) {
     return `${student.name} receives a perfect score on ${subject} `;
   }
+
+  // Stretch Goal
+  adjustGrade(student) {
+    let points = Math.round(Math.random() * 100);
+    if (student.grade >= 100) {
+      student.grade -= points;
+      return `${points} points are subtracted from ${student.name}'s grade.  ${student.name}'s current grade is ${student.grade}`;
+    } else {
+      student.grade += points;
+      return `${points} points are added to ${student.name}'s grade.  ${student.name}'s current grade is ${student.grade}`;
+    }
+  }
 }
 
+// Student Class
 class Student extends Person {
   constructor(studInformation) {
     super(studInformation);
     this.previousBackground = studInformation.previousBackground;
     this.className = studInformation.className;
     this.favSubjects = studInformation.favSubjects;
+    this.grade = studInformation.grade;
   }
 
   listsSubjects() {
@@ -47,8 +64,20 @@ class Student extends Person {
   sprintChallenge(student, subject) {
     return `${student.name} has begun sprint challenge on ${subject}.`;
   }
+
+  // Stretch Goal
+  graduate() {
+    if (this.grade >= 70) {
+      return `${this.name} has graduated with a final grade of ${this.grade}!`;
+    } else {
+      let diff = 70 - this.grade;
+      this.grade += diff;
+      return `After more grading, ${diff} points were earned and ${this.name} has graduated with a final grade of ${this.grade}!`;
+    }
+  }
 }
 
+// Project Manager Class
 class ProjectManagers extends Instructor {
   constructor(PMinformation) {
     super(PMinformation);
@@ -65,7 +94,7 @@ class ProjectManagers extends Instructor {
   }
 }
 
-// Person
+// Person Objects
 const personOne = new Person({
   name: "Tyler",
   age: 19,
@@ -87,7 +116,7 @@ const personThree = new Person({
   gender: "F"
 });
 
-// Instuctors
+// Instuctors Objects
 const InstructorOne = new Instructor({
   name: "James",
   age: 23,
@@ -109,7 +138,7 @@ const InstructorTwo = new Instructor({
   catchPhrase: "HTML and CSS is super fun!"
 });
 
-// Students
+// Students Objects
 const StudentOne = new Student({
   name: "Kindle",
   age: 54,
@@ -117,7 +146,8 @@ const StudentOne = new Student({
   gender: "F",
   previousBackground: "Worked at Shoe Locker",
   className: "PT12",
-  favSubjects: "CSS"
+  favSubjects: "CSS",
+  grade: 100
 });
 
 const StudentTwo = new Student({
@@ -127,7 +157,8 @@ const StudentTwo = new Student({
   gender: "M",
   previousBackground: "Mechanic at Chevrolet",
   className: "PT16",
-  favSubjects: "Python"
+  favSubjects: "Python",
+  grade: 100
 });
 
 const StudentThree = new Student({
@@ -137,10 +168,11 @@ const StudentThree = new Student({
   gender: "M",
   previousBackground: "cashier at Burger king",
   className: "PT26",
-  favSubjects: "HTML"
+  favSubjects: "HTML",
+  grade: 70
 });
 
-// Project Manager
+// Project Manager Objects
 const projectManagerOne = new ProjectManagers({
   name: "Mark",
   age: 31,
@@ -165,27 +197,33 @@ const projectManagerTwo = new ProjectManagers({
   favInstructor: "James"
 });
 
+// Logs
 console.log(personOne.speak());
 console.log(personTwo.speak());
 console.log(personThree.speak());
 console.log(InstructorOne.speak());
 console.log(InstructorOne.demo("CSS"));
 console.log(InstructorOne.grade(StudentOne, "LESS"));
+console.log(InstructorOne.adjustGrade(StudentTwo)); // Stretch Goal
 console.log(InstructorTwo.speak());
 console.log(InstructorTwo.demo("LESS"));
 console.log(InstructorTwo.grade(personTwo, "HTML"));
+console.log(InstructorTwo.adjustGrade(StudentThree)); // Stretch Goal
 console.log(StudentOne.speak());
 console.log(StudentOne.listsSubjects());
 console.log(StudentOne.PRAssignment(StudentOne, "JavaScript"));
 console.log(StudentOne.sprintChallenge(StudentOne, "HTML"));
+console.log(StudentOne.graduate(StudentOne)); // Stretch Goal
 console.log(StudentTwo.speak());
 console.log(StudentTwo.listsSubjects());
 console.log(StudentTwo.PRAssignment(StudentTwo, "Node.JS"));
 console.log(StudentTwo.sprintChallenge(StudentTwo, "React"));
+console.log(StudentTwo.graduate(StudentTwo)); // Stretch Goal
 console.log(StudentThree.speak());
 console.log(StudentThree.listsSubjects());
 console.log(StudentThree.PRAssignment(StudentThree, "Python"));
 console.log(StudentThree.sprintChallenge(StudentThree, "CSS"));
+console.log(StudentThree.graduate(StudentThree)); // Stretch Goal
 console.log(projectManagerOne.speak());
 console.log(projectManagerOne.demo("LESS"));
 console.log(projectManagerOne.grade(projectManagerOne, "Node.JS"));
